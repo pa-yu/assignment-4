@@ -2,9 +2,9 @@ import requests
 import sys
 
 # Configuration
-CANVAS_URL = "" # Your Canvas URL (E.g. https://canvas.cmu.edu)
-COURSE_ID = ""  # Our course ID (from the course URL)
-TOPIC_ID = ""  # Discussion topic ID (from the discussion URL)
+CANVAS_URL = "https://canvas.cmu.edu" # Your Canvas URL (E.g. https://canvas.cmu.edu)
+COURSE_ID = "50567"  # Our course ID (from the course URL) different from the actual course ID
+TOPIC_ID = "770528"  # Discussion topic ID (from the discussion URL)
 
 # Read the access token from file
 try:
@@ -27,9 +27,15 @@ headers = {
     "Authorization": f"Bearer {ACCESS_TOKEN}"
 }
 
+url = "https://catfact.ninja/fact"
+
+response = requests.get(url)
+
+data = response.json()
+
 # The message you want to post
 message_data = {
-    "message": "CHANGE ME"
+    "message": data["fact"]
 }
 
 # API endpoint for posting to a discussion
